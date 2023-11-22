@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+   my_container:
+      container_name: streamlit_with_envs
+      hostname: streamlit_with_envs
+      image: "streamlit:app"
+      restart: "on-failure:5"
+      ports:
+        - "8501:8501" #defualt streamlit port
+   fluentd:
+      container_name: fluentd
+      user: root
+      build:
+        context: .
+      image: fluentd
+      volumes:
+        - /var/lib/docker/containers:/fluentd/logs/containers
+        - ./fluent.conf:/fluentd/etc/fluent.conf
+        - ./logs:/output #where the logs will be stored
+      logging:
+        driver: "local"
