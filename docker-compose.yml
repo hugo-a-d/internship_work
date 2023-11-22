@@ -1,8 +1,8 @@
 version: '3.8'
 services:
    my_container:
-      container_name: streamlit_with_envs
-      hostname: streamlit_with_envs
+      container_name: streamlit_app
+      hostname: streamlit_app
       image: "streamlit:app"
       restart: "on-failure:5"
       ports:
